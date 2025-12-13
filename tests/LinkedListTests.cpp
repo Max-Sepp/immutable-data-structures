@@ -42,6 +42,20 @@ TEST(LinkedListTest, ConsAndIndex) {
   EXPECT_FALSE(list.IsEmpty());
 }
 
+TEST(LinkedListTest, InfixConsAndIndex) {
+  auto list = LinkedList<int>::Empty();
+  list = 1 += list;
+  list = 2 += list;
+  list = 3 += list;  // [3,2,1]
+  EXPECT_EQ(to_vector(list), std::vector<int>({3, 2, 1}));
+  EXPECT_EQ(list.Head(), 3);
+  EXPECT_EQ(list.Index(0), 3);
+  EXPECT_EQ(list.Index(2), 1);
+  EXPECT_EQ(list.Length(), 3);
+  EXPECT_FALSE(list.IsSingle());
+  EXPECT_FALSE(list.IsEmpty());
+}
+
 TEST(LinkedListTest, TailAndAppend) {
   auto list1 = LinkedList<int>::Empty();
   list1 = list1.Cons(3).Cons(2).Cons(1);  // [1,2,3]
