@@ -11,7 +11,7 @@ help:
 	@echo "  make release      # configure & build using the 'release' preset"
 	@echo "  make clean        # remove build/ directory"
 	@echo "  make run          # runs main"
-	@echo "  make run-tests    # build (debug) and run test binaries"
+	@echo "  make test         # build (debug) and run test binaries"
 
 debug:
 	@echo "Configuring and building (debug)..."
@@ -26,7 +26,7 @@ release:
 build-debug: debug
 build-release: release
 
-run-tests: debug
+test: debug
 	@echo "Running test binaries from $(BUILD_DIR)/$(PRESET_DEBUG)..."
 	@bdir="$(BUILD_DIR)/$(PRESET_DEBUG)"; \
 	if [ -x "$$bdir/linkedlist_tests" ]; then \
