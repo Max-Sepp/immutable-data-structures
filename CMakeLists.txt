@@ -34,10 +34,17 @@ if (BUILD_TESTS)
 
     # Add the linkedlist tests executable
     add_executable(linkedlist_tests
-        tests/LinkedListTests.cpp
+            tests/LinkedListTests.cpp
     )
     target_link_libraries(linkedlist_tests PRIVATE GTest::gtest_main)
     target_include_directories(linkedlist_tests PRIVATE src)
+
+    add_executable(deque_tests
+            tests/DequeTests.cpp
+    )
+    target_link_libraries(deque_tests PRIVATE GTest::gtest_main)
+    target_include_directories(deque_tests PRIVATE src)
+
     include(GoogleTest)
     gtest_discover_tests(linkedlist_tests)
 endif ()
