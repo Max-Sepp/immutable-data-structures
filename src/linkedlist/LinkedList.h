@@ -21,6 +21,23 @@ class LinkedList {
     T value_;
     LinkedList next_;
     Node(const T& value, const LinkedList& next) : value_(value), next_(next) {}
+    // Move and copy constructors
+    Node(const Node& other) : value_(other.value_), next_(other.next_) {}
+    Node(Node&& other) noexcept
+        : value_(std::move(other.value_)), next_(std::move(other.next_)) {}
+    // Move and copy assignments
+    Node& operator=(const Node& other) {
+      if (this == &other) return *this;
+      value_ = other.value_;
+      next_ = other.next_;
+      return *this;
+    }
+    Node& operator=(Node&& other) noexcept {
+      if (this == &other) return *this;
+      value_ = std::move(other.value_);
+      next_ = std::move(other.next_);
+      return *this;
+    }
   };
   // If value == nullptr then the list is empty
   std::shared_ptr<Node> value_;
