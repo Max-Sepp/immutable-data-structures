@@ -32,6 +32,9 @@ test: debug
 	if [ -x "$$bdir/linkedlist_tests" ]; then \
 	  echo "==> Running linkedlist_tests"; $$bdir/linkedlist_tests || exit $$?; \
 	else echo "linkedlist_tests not found in $$bdir"; fi; \
+	if [ -x "$$bdir/deque_tests" ]; then \
+	  echo "==> Running deque_tests"; $$bdir/deque_tests || exit $$?; \
+	else echo "deque_tests not found in $$bdir"; fi; \
 
 run: debug
 	$(BUILD_DIR)/$(PRESET_DEBUG)/main

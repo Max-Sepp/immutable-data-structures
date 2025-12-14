@@ -65,17 +65,6 @@ class LinkedList {
   LinkedList(T element, LinkedList next)
       : value_(std::make_shared<Node>(element, next)) {}
 
-  ~LinkedList() {
-    // Eagerly destroy unique tail chain to avoid deep recursive destruction
-    // when this instance is the unique owner of the tail nodes.
-    LinkedList cur = std::move(value_->next_);
-    while (cur.value_ != nullptr && cur.value_.unique()) {
-      LinkedList next = std::move(cur.value_->next_);
-      cur.value_.reset();
-      cur = std::move(next);
-    }
-  }
-
   // Return true if list is nullptr or represents an empty node.
   [[nodiscard]] bool IsEmpty() const { return value_ == nullptr; }
 
